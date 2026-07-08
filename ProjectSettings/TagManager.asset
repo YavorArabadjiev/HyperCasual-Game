@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Door
+  - Bad Door
+  - Wall
+  - Ally
+  - Follow
   layers:
   - Default
   - TransparentFX
