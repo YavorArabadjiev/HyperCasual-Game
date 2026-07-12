@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4214344242815115784, guid: ca2f9bb207b10ed438ac1349ffc6c820, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Player 1
       objectReference: {fileID: 0}
     - target: {fileID: 4214344242815115784, guid: ca2f9bb207b10ed438ac1349ffc6c820, type: 3}
       propertyPath: m_TagString
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a81ad7a2e453ce4fb1109c0b488f75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  xSpeed: 4
+  xSpeed: 30
   zSpeed: 15
 --- !u!114 &4870412686184250182
 MonoBehaviour:

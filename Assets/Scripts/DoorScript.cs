@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
 public class DoorScript : MonoBehaviour
 {
@@ -8,19 +9,27 @@ public class DoorScript : MonoBehaviour
          float clampedPos;
          public List<GameObject> allies = new List<GameObject>();
          AudioSource collectSound;
-
-    void FixedUpdate()
-    {
-       
-    }
+        public static DoorScript doorScript;
+        AudioSource badSound;
+        [HideInInspector] public GameObject player;
+         PlayerMovement playerMovement;
+         DoorScript playerDoorScript;
+         
 
     void Start()
     {
-        allies.Add(gameObject);
+        if(gameObject.tag != "Player")
+        playerDoorScript.allies.Add(gameObject);
+        PlayerMovement.instance.xSpeed = playerMovement.xSpeed;
     }
 
     void Awake()
     {
+        doorScript = this;
+        badSound = GameObject.Find("Bad Sound").GetComponent<AudioSource>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerMovement = player.GetComponent<PlayerMovement>();
+        playerDoorScript = player.GetComponent<DoorScript>();
         collectSound = gameObject.GetComponent<AudioSource>();
     }
 
@@ -34,9 +43,9 @@ public class DoorScript : MonoBehaviour
     {
         if(other.tag == "Door")
         {
-            allycount = allycount * 2;
+            playerDoorScript.allycount = playerDoorScript.allycount * 2;
             PlayerMovement.instance.xSpeed += 6;
-            for(int i = 0; i < allycount - 1; i++)
+            for(int i = 0; i < playerDoorScript.allycount - 1; i++)
             {
                 Instantiate(ally, new Vector3(gameObject.transform.position.x - Random.Range(0.7f, 2f), gameObject.transform.position.y, gameObject.transform.position.z - Random.Range(0.7f, 1f)), Quaternion.Euler(0f, 90f, 0f));
                 Destroy(other.gameObject);
@@ -49,21 +58,23 @@ public class DoorScript : MonoBehaviour
 
         if(other.tag == "Bad Door")
         {
-            
-            allycount = allycount / 2;
-            //for(int i = 0; i < allycount; i++)
-            //{
-                //if(allycount != 1)
-                //Destroy(GameObject.FindGameObjectsWithTag("Ally")[i]);
-                //Destroy(other.gameObject);
-            //}
+            if(!badSound.isPlaying)
+            badSound.Play();
 
-            for(int i = 0; i < allycount; i++)
+
+            if(playerDoorScript.allycount > 1)
             {
-                GameObject allyToDestroy = allies[i];
-                allies.RemoveAt(i);
-                Destroy(allyToDestroy);
+                playerDoorScript.allycount = playerDoorScript.allycount / 2;
+
+              for(int i = 0; i < playerDoorScript.allycount; i++)
+              {
+                  GameObject allyToDestroy = playerDoorScript.allies[i];
+                  playerDoorScript.allies.RemoveAt(i);
+                  Destroy(allyToDestroy);
+              }
             }
+            Destroy(other.gameObject);
+            
         }
     }
 }
