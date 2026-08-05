@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   xSpeed: 4
-  zSpeed: 15
+  zSpeed: 5
 --- !u!114 &4870412686184250182
 MonoBehaviour:
   m_ObjectHideFlags: 0

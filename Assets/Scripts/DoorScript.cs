@@ -44,7 +44,7 @@ public class DoorScript : MonoBehaviour
         if(other.tag == "Door")
         {
             playerDoorScript.allycount = playerDoorScript.allycount * 2;
-            PlayerMovement.instance.xSpeed += 6;
+            //PlayerMovement.instance.xSpeed += 6;
             for(int i = 0; i < playerDoorScript.allycount - 1; i++)
             {
                 Instantiate(ally, new Vector3(gameObject.transform.position.x - Random.Range(0.7f, 2f), gameObject.transform.position.y, gameObject.transform.position.z - Random.Range(0.7f, 1f)), Quaternion.Euler(0f, 90f, 0f));

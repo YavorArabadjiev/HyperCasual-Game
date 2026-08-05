@@ -13,6 +13,7 @@ public class WallScript : MonoBehaviour
    [SerializeField] GameObject loseText;
    [SerializeField] GameObject restartButton;
    bool loseTimerStart = false;
+   PlayerInputActions inputActions;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,6 +36,8 @@ public class WallScript : MonoBehaviour
                 Destroy(DoorScript.doorScript.player);
             }
             Destroy(gameObject);
+            if(inputActions != null)
+            inputActions.Disable();
         }
 
         
@@ -63,5 +66,7 @@ public class WallScript : MonoBehaviour
         yield return new WaitForSeconds(10f);
         loseText.SetActive(true);
         restartButton.SetActive(true);
+        if(inputActions != null)
+        inputActions.Disable();
     }
 }

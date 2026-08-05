@@ -1164,7 +1164,7 @@ MonoBehaviour:
   wallText: {fileID: 1664900542}
   winText: {fileID: 1011861131}
   loseText: {fileID: 583237945}
-  loseButton: {fileID: 1757645831}
+  restartButton: {fileID: 1757645831}
 --- !u!82 &388472526
 AudioSource:
   m_ObjectHideFlags: 0
